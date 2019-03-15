@@ -1,0 +1,57 @@
+{% extends "MProdLicenciaCyPBundle:Page:index.html.twig" %}
+
+
+{% block styles %}
+    {{parent()}}
+{% endblock %}
+
+
+
+{% block cuerpo %}
+
+    {% block  breadcrumb %}
+        {% set breadoption = { 'Inicio': 'path_home', 'Generar Licencias':'#'} %}
+        {{parent()}}
+    {% endblock%}
+
+
+    {% block bloqueMensaje %}
+        {% set mensaje_reporte = 'home_mensaje' %}
+        {{ parent() }}
+    {% endblock %}
+
+
+    {#
+        {%block nuevoybarradebusquedas %}
+            {% set addEntidadPath = 'tecnico_add' %}
+            {% set addButtonValue = 'Nuevo Técnico' %}
+            {% set addButtonTitle = 'Crear ' ~ addButtonValue %}
+            {{parent()}}
+        {% endblock%}
+    #}
+
+        {# Mensaje de ayuda #}
+    <div class="row">
+        <div class="twelvecol">
+            <div class="ui-widget">
+                <div style="margin-top: 20px; margin-bottom: 20px; padding: 10px;" class="ui-state-highlight ui-corner-all">
+                    <p>
+                        <span style="float: left; margin-right: .3em;" class="ui-icon ui-icon-info"> </span> <strong>
+
+                            Ayuda Generales y eia: <br>
+                        </strong>
+                        Colocar algun comentario de ayuda al usuario.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block botonArriba %}
+        {{parent()}}
+    {%  endblock %}
+
+{% endblock %}
+
+

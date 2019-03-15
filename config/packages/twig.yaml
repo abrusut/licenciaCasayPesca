@@ -2,3 +2,9 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes: ['STGThemeBundle::bootstrap_4_custom_layout.html.twig'] #para renderizar los templates de formularios
+
+stg_theme:
+    configuration:
+        offline: false
+        materialize: true

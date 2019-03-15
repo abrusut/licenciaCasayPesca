@@ -1,0 +1,95 @@
+{% extends 'MProdLicenciaCyPBundle:Page:base.html.twig' %}
+
+{% block javascripts %} 
+    {{parent()}}
+    <script>
+        $(document).ready(function () {
+
+            $('.js-datepicker').datepicker({
+                format: 'mm-dd-yyyy'
+            });
+
+        });
+    </script>
+{% endblock %} 
+
+{% block menu %}
+    {% block submenus %}
+        <li class=''>
+            <a href="{{ path('path_home') }}">
+                <span>Generar Licencia</span>
+            </a>
+        </li>
+
+        {% if  is_granted('ROLE_SUPER_ADMIN')  %}
+
+        {% endif %}
+        {% if  is_granted('ROLE_ADMIN') or  is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_TECNICO')%}
+            <li>
+
+            </li>
+        {% endif %}
+        {% if  is_granted('ROLE_ADMIN') or  is_granted('ROLE_SUPER_ADMIN') %}
+            <li>
+                <a href="{{path('tecnico_list')}}">
+                    <span>Tecnicos</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% if  not is_granted('IS_AUTHENTICATED_FULLY')  %}
+            <li class=''>
+                <a href="{{ path('login') }}">
+                    <span>Entrar</span>
+                </a>
+            </li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="icons">
+
+            </li>
+        {% endif %}
+
+    {% endblock %}
+
+{% endblock %}
+
+
+{% block cuerpo %}
+
+    {% if breadoption is not defined or breadoption is null %}
+        {% set breadoption = { 'Inicio': 'home_page'} %}
+    {% endif %}
+
+    {% block breadcrumb %}
+        <div class="row">
+            <div class="twelvecol ruta-name">
+                {% for key, value in breadoption %} {% if loop.last %}
+                    <div style="float: left;">{{ key }}</div>
+                {% else %}
+                    <div style="float: left;">
+                        <a href="{{ path( value )}}">{{ key }}</a>
+                    </div>
+                    <span style="float: left;" class="ui-icon ui-icon-arrow-1-e"> </span> 
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}
+
+{% block nuevoybarradebusquedas %}
+    <fieldset>
+        <div class="row">
+            <div class="fourcol"></div>
+            {% if not (is_granted('ROLE_TECNICO') and addEntidadPath=='add_administrador') %}
+                <div class="eightcol last ">
+                    <form action="{{path(addEntidadPath)}}" >
+                        <input class="button" type="submit" title="{{addButtonTitle}}" value="{{addButtonValue}}" >
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </fieldset>
+{% endblock %}
+
+{% endblock %}

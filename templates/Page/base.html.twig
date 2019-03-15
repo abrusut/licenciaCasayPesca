@@ -1,0 +1,35 @@
+{% extends '@STGTheme/Default/base.html.twig' %}
+
+{% block javascriptsIncludes %}
+    {{parent()}}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}"  type="text/css" />
+{% endblock %}
+
+{% block menu %}
+    {% block submenus %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block cuerpo %}
+    {% block nuevoybarradebusquedas %}
+    {% endblock %}
+
+    {% block bloqueMensaje %}
+        {# Esto es para el mensaje flash. #}
+        {% for flash_message in app.session.flashBag.get(mensaje_reporte) %}
+            <div class="alert alert-success">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+    {% endblock %}
+{% endblock %}
+
