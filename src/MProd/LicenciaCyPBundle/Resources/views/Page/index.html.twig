@@ -1,0 +1,34 @@
+{% extends '@MProdLicenciaCyP/Page/base.html.twig' %}
+
+{% block main %}
+    
+    {% block content %}        
+        {% block nuevoybarradebusquedas %}
+            {% set addEntidadPath = 'tecnico_add' %}
+        {% set addButtonValue = 'Nuevo Técnico' %}
+        {% set addButtonTitle = 'Crear ' ~ addButtonValue %}
+        {{parent()}}
+            <fieldset>
+                <div class="row">
+                    <div class="fourcol"></div>
+                    {% if not (is_granted('ROLE_TECNICO') and addEntidadPath=='add_administrador') %}
+                        <div class="eightcol last ">
+                            <form action="{{path(addEntidadPath)}}" >
+                                <input class="button" type="submit" title="{{addButtonTitle}}" value="{{addButtonValue}}" >
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+        {% endblock %}
+    {% endblock %}
+{% endblock %}
+
+{% block backTop %}         
+
+{% endblock %}
+
+{% block javascript %} 
+    {{parent()}}
+   
+{% endblock %} 

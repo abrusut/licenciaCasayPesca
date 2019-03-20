@@ -1,0 +1,49 @@
+path_home:
+    path:     /
+    defaults: { _controller: MProdLicenciaCyPBundle:Licencia:add }    
+
+login:
+    path:     /login
+    defaults: { _controller: MProdLicenciaCyPBundle:Security:login }
+
+logout:
+    path:     /logout
+
+login_check:
+    path:     /loginCheck
+
+change_password:
+    path: /Security/ChangePassword
+    defaults: { _controller: MProdLicenciaCyPBundle:Security:changePassword }
+
+tecnico_list:
+    path:    /tecnico/list
+    defaults: { _controller: MProdLicenciaCyPBundle:Tecnico:list }
+
+tecnico_add:
+   path:    /tecnico/add
+   defaults: { _controller: MProdLicenciaCyPBundle:Tecnico:add }
+
+tecnico_view:
+    path:     /tecnico/view/{id}
+    defaults: { _controller: MProdLicenciaCyPBundle:Tecnico:view }
+
+tecnico_delete:
+    path:     /tecnico/delete/{id}
+    defaults: { _controller: MProdLicenciaCyPBundle:Tecnico:delete }
+
+tecnico_edit:
+    path:     /tecnico/edit/{id}
+    defaults: { _controller: MProdLicenciaCyPBundle:Tecnico:edit }
+
+reset_pass_tecnico:
+    path:     /tecnico/ResetPassTecnico/{id}/
+    defaults: { _controller: MProdLicenciaCyPBundle:Tecnico:resetPassTecnico }
+        
+add_administrador:
+    path:     /administrador/add
+    defaults: { _controller: MProdLicenciaCyPBundle:Administrador:addAdministrador }
+
+persona_add:
+   path:    /persona/add
+   defaults: { _controller: MProdLicenciaCyPBundle:Persona:add }    

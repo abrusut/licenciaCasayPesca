@@ -6,3 +6,7 @@ stg_theme:
     resource: '@STGThemeBundle/Controller/DefaultController.php'
     type:     annotation
     prefix:   /stgtheme
+
+m_prod_licencia_cy_p:
+    resource: "@MProdLicenciaCyPBundle/Resources/config/routing.yml"
+    prefix:   /    

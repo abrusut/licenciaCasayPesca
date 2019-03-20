@@ -1,0 +1,77 @@
+{% extends '@MProdLicenciaCyP/Page/base.html.twig' %}
+
+{% block main %}  
+    
+     {% block cover %}         
+        {# con la variable de template "datos_encabezado_imagen" se puede setear una imagen personalizada en este bloque #}         
+     {% endblock %}
+    
+     {% block breadcrumb %}                 
+        {% block breadcrumbItems %}        
+        {% endblock %}                             
+     {% endblock %}
+         
+     {% block content %}      
+      <div class="container">
+        <div class="card-panel">
+          <div class="row">
+              <form  class="col s12" action="{{ path('login_check') }}" method="post" >
+                      {% if error %}                   
+                          <div class="alert alert-danger">
+                              {{ error.messageKey|trans(error.messageData, 'security') }}
+                          </div>
+                      {% endif %}
+
+                  <div class="row col s12 center">
+                      <div class="input-field col s12 center">                          
+                          <p class="center login-form-text">Login - Licencias Casa y Pesca</p>
+                      </div>
+                  </div>
+                   
+                      <div class="row">
+                          <div class="input-field col m12 s12 l6">
+                              <i class="material-icons prefix">
+                                      email
+                              </i>
+                              <input type="text" id="username"
+                                      name="_username"
+                                      value="{{ last_username }}"
+                                      />
+                              <label for="username" class="center-align">Ingrese su email</label>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col m12 s12 l6">
+                          <i class="material-icons prefix">
+                                  lock
+                          </i>
+                          <input type="password" id="password" name="_password" />
+                          <label for="password" class="">Password</label>
+                        </div>
+                      </div>
+                          <div class="row">
+                                <div class="col m12 s12">
+                                    <input type="checkbox" id="no_cerrar_session" name="_remember_me"/>
+                                    <label for="no_cerrar_session">Recordarme</label>
+                                </div>
+                          </div>
+
+
+                            <div class="row">
+                                <div class="col m12 s12 buttons-custom-responsive">
+                                    <button type="submit" class="btn btn-primary">Aceptar</button>                                    
+                                </div>
+                            </div>     
+                      <input type="hidden" name="_target_path" value="path_home" />  
+                  
+            </form>       
+          </div>
+        </div>   
+      </div>   
+        {% endblock %}         
+        
+        {% block backTop %}         
+        {% endblock %}
+    
+     
+{% endblock %}

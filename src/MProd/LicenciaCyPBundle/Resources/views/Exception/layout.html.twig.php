@@ -1,0 +1,1 @@
+{% extends 'MProdLicenciaCyPBundle:Page:index.html.twig' %}

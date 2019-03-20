@@ -1,24 +1,29 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
 security:
 
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-    providers:
-        in_memory:
-            memory: ~
-
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        page:
+            pattern:    ^/*
+            anonymous:  ~
+            form_login:
+                login_path: login
+                check_path: login_check
+            remember_me:
+                secret: licencia1234
+                lifetime: 3600
+                path: /
+            logout:
+                path:   logout
+                target: login
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+    providers:
+        usuarios:
+            entity: { class: MProd\LicenciaCyPBundle\Entity\Usuario, property: email}
+
+    encoders:
+        MProd\LicenciaCyPBundle\Entity\Usuario:
+            algorithm: bcrypt
+            cost: 12

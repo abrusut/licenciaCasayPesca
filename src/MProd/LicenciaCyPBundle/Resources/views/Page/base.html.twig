@@ -1,0 +1,31 @@
+{% extends '@STGTheme/Default/baseMaterializecss.html.twig' %}
+{% set datos_encabezado_title = 'Licencia Casa y Pesca' %}
+{% set datos_encabezado_entity = 'Ministerio de Produccion' %}
+
+{% block css %}
+     {{parent()}}
+{% endblock %}
+
+{% block nav %}
+    {{parent()}}
+     {% block navItems %}
+        {{parent()}}
+    {% endblock %}
+{% endblock %}
+
+
+{# DEFINIR CUERPO EN CADA VIEW #}
+
+{% block footer %}
+     {{parent()}}
+{% endblock %}
+
+{% block javascript %}
+     {{parent()}}
+    {# libreras de javascript #}
+{% endblock %}
+
+{% block javascriptsIncludes %}
+    {{parent()}}
+{% endblock %}
+

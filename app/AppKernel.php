@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new STG\ThemeBundle\STGThemeBundle(),
             new AppBundle\AppBundle(),
+            new MProd\LicenciaCyPBundle\MProdLicenciaCyPBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,0 +1,4 @@
+services:
+#    m_prod_licencia_cy_p.example:
+#        class: MProd\LicenciaCyPBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
