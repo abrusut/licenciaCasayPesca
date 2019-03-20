@@ -18,7 +18,7 @@ class LicenciaType extends AbstractType
     {
         $builder
             ->add('tipoLicencia')
-            ->add('persona',  new PersonaType())
+            ->add('persona',  PersonaType::class)
         ;
     }
     

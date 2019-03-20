@@ -3,11 +3,14 @@ namespace MProd\LicenciaCyPBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 /**
- * Cuenta
- * @ORM\Entity
  * @ORM\Table(name="persona")
+ * @ORM\Entity
+ * @Entity @HasLifecycleCallbacks 
  */
 class Persona
 {
@@ -131,6 +134,23 @@ class Persona
      */
     private $provincia;
 
+    /**    
+    * @ORM\OneToMany(targetEntity="MProd\LicenciaCyPBundle\Entity\Licencia", mappedBy="persona")
+    */
+    private $licencias;
+
+     /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"comment"="Tabla usuarios"})
+     */
+    private $createdAt;
+
+    public function __construct(){
+        $this->licencias = new ArrayCollection();
+    }
+
+
     /**
      * @return mixed
      */
@@ -147,13 +167,7 @@ class Persona
     {
         $this->provincia = $provincia;
     }
-
-
-    function __construct()
-    {
-       
-    }
-
+   
     /**
      *  Retorna el nombre y el apellido del Usuario
      *
@@ -372,6 +386,10 @@ class Persona
         $this->email = $email;
     }
 
-
+    /** @PrePersist */
+    public function onPrePersist()
+    {
+        $this->createAt = new \DateTime();
+    }
 
 }

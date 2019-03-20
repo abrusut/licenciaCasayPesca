@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("email")
  */
 
-class Usuario implements AdvancedUserInterface, \Serializable {
+abstract class Usuario implements AdvancedUserInterface, \Serializable {
 
     /**
      * @var int

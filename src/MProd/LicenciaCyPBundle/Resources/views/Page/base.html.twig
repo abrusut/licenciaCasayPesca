@@ -1,18 +1,59 @@
-{% extends '@STGTheme/Default/baseMaterializecss.html.twig' %}
+{#% extends '@STGTheme/Default/baseMaterializecss.html.twig' % #}
+{% extends '@STGTheme/Default/base.html.twig' %}
 {% set datos_encabezado_title = 'Licencia Casa y Pesca' %}
 {% set datos_encabezado_entity = 'Ministerio de Produccion' %}
 
-{% block css %}
-     {{parent()}}
+{% block navItemsDropdown %}
 {% endblock %}
+
+{% block navBar %}
+        {{parent()}}
+{% endblock %}
+
+{% block navBarItems %}        
+        <ul class="right hide-on-med-and-down">
+           <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path('path_home') }}">Generar Licencia</a></li>
+                {% if  is_granted('ROLE_SUPER_ADMIN')  %}
+
+        {% endif %}
+        {% if  is_granted('ROLE_ADMIN') or  is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_TECNICO')%}
+            <li>
+
+            </li>
+        {% endif %}
+        {% if  is_granted('ROLE_ADMIN') or  is_granted('ROLE_SUPER_ADMIN') %}
+            <li>
+                <a href="{{path('tecnico_list')}}">
+                    <span>Tecnicos</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% if  not is_granted('IS_AUTHENTICATED_FULLY')  %}
+            <li class=''>
+                <a href="{{ path('login') }}">
+                    <span>Entrar</span>
+                </a>
+            </li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="icons">
+
+            </li>
+        {% endif %}
+            </ul>
+        </ul>
+{% endblock %}          
 
 {% block nav %}
-    {{parent()}}
-     {% block navItems %}
-        {{parent()}}
-    {% endblock %}
+{{parent()}}          
 {% endblock %}
 
+{% block bloqueMensaje %}
+        {% set mensaje_reporte = 'home_mensaje' %}
+        {{ parent() }}
+{% endblock %}
 
 {# DEFINIR CUERPO EN CADA VIEW #}
 
@@ -23,9 +64,7 @@
 {% block javascript %}
      {{parent()}}
     {# libreras de javascript #}
+     
 {% endblock %}
 
-{% block javascriptsIncludes %}
-    {{parent()}}
-{% endblock %}
 

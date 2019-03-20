@@ -4,19 +4,25 @@ namespace MProd\LicenciaCyPBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * Licencia
  *
+ * @ORM\Table(name="licencia")
  * @ORM\Entity
+ * @Entity @HasLifecycleCallbacks 
  */
 class Licencia
 {
-    /**
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -68,14 +74,20 @@ class Licencia
     private $comprobante;
 
     /**
+     * @var \MProd\LicenciaCyPBundle\Entity\TipoLicencia
+     * 
      * Varias licencias se pueden asociar a un mismo tipo de licencia
      * @ORM\ManyToOne(targetEntity="MProd\LicenciaCyPBundle\Entity\TipoLicencia")
      */
     private $tipoLicencia;
 
     /**
-     * Varias licencias se pueden asociar a un misma persona
-     * @ORM\OneToOne(targetEntity="MProd\LicenciaCyPBundle\Entity\Persona",cascade={"persist", "remove"}) 
+     * @var \MProd\LicenciaCyPBundle\Entity\Persona
+     *
+     * @ORM\ManyToOne(targetEntity="MProd\LicenciaCyPBundle\Entity\Persona", inversedBy="licencias")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="licencia_id", referencedColumnName="id")
+     * })
      */
     private $persona;
 
@@ -207,22 +219,18 @@ class Licencia
         $this->persona = $persona;
     }
 
-
-
-
     /*============================Setter y getters ===============================*/
 
-    function __construct()
-    {
-
-    }
-
-    function __toString()
+    public function __toString()
     {
         return $this->getLicencia(). ' ';
     }
 
-
+    /** @PrePersist */
+    public function onPrePersist()
+    {
+        $this->fechaEmitida = new \DateTime();
+    }
 
 
 

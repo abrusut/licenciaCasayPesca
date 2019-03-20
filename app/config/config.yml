@@ -6,7 +6,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: es
 
 framework:
     #esi: ~
@@ -69,10 +69,11 @@ sensio_framework_extra:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'    
-    form-theme: ['STGThemeBundle::bootstrap_4_custom_layout.html.twig'] #para renderizar los templates de formularios
+    #form_themes: ['@STGThemeBundle\Resources\views\bootstrap_4_custom_layout.html.twig'] #para renderizar los templates de formularios
         
 
 stg_theme:
     configuration:
         offline:  false #true o false (Indica si lee los recursos de la intranet o de servidores cdn externos).
-        materialize: true
+        materialize: false
+        
