@@ -43,18 +43,22 @@ class PersonaType extends AbstractType
                         'choices' => array(
                             'M' => 'M',
                             'F' => 'F'
-                        )
+                        ),
+                        //'choices_as_values' => true,'multiple'=>false,'expanded'=>true
                     )
                 )
             ->add('jubilado', 
                 ChoiceType::class,
                 array(
                     'label' => 'Jubilado',
+                    'expanded' => true,
+                    'multiple' => false,
+                    'empty_data' => 'NO',
                     'choices' => array(
-                        '0' => 'SI',
-                        '1' => 'NO'
+                        'SI' => 1,
+                        'NO' => 0
                     ), 
-                    'required' => FALSE
+                    'choices_as_values' => true,'multiple'=>false,'expanded'=>true
                     )
             )                    
             ->add('telefono', IntegerType::class, 

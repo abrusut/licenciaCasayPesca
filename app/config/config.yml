@@ -69,11 +69,12 @@ sensio_framework_extra:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'    
-    #form_themes: ['@STGThemeBundle\Resources\views\bootstrap_4_custom_layout.html.twig'] #para renderizar los templates de formularios
+    form_themes: ['@STGTheme/bootstrap_4_custom_layout.html.twig'] #para renderizar los templates de formularios
+    
         
 
 stg_theme:
     configuration:
         offline:  false #true o false (Indica si lee los recursos de la intranet o de servidores cdn externos).
-        materialize: false
+        materialize: true
         

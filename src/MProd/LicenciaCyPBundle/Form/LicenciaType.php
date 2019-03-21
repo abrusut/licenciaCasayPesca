@@ -17,8 +17,9 @@ class LicenciaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tipoLicencia')
             ->add('persona',  PersonaType::class)
+            ->add('tipoLicencia')
+            
         ;
     }
     
